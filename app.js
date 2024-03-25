@@ -68,6 +68,10 @@ function createBoard() {
 createBoard()
 
 function flipCard() {
+    console.log(cardArray)
     let cardID = this.getAttribute('data-id')
    cardsChosen.push(cardArray[cardID].name)
+   console.log(cardsChosen);
+   console.log('clicked', cardID)
+   this.setAttribute('src', cardArray[cardID].img)
 }
