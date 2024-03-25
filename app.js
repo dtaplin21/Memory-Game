@@ -70,8 +70,8 @@ function createBoard() {
 createBoard()
 function checkMatch() {
    const cards = document.querySelectorAll('img') //search for every image in document
-   const optionOneId = cardsChosen[0];
-   const optionTwoId = cardsChosen[1]; 
+   const optionOneId = cardsChosenIds[0]; 
+   const optionTwoId = cardsChosenIds[1]; 
 
     console.log('Check for match!')
     if(optionOneId === optionTwoId) {
@@ -80,12 +80,17 @@ function checkMatch() {
 
    if(cardsChosen[0] == cardsChosen[1]) {
        alert('You found a match!')
-    cards[cardsChosenIds[0]].setAttribute('src', 'images/swhite.png') //change image to white
-    cards[cardsChosenIds[1]].setAttribute('src', 'images/swhite.png');
-    cards[cardsChosenIds[0]].removeEventListener('click', flipCard)
+    cards[optionOneId].setAttribute('src', 'images/swhite.png') //change image to white
+    cards[optionTwoId].setAttribute('src', 'images/swhite.png');
+    cards[optionOneId].removeEventListener('click', flipCard);
+    cards[optionTwoId].removeEventListener('click', flipCard); // remove so you cant click on the same card twice
     cardsWon.push(cardsChosen)
-   }   
-   cardsChosen = [] 
+   } else {
+        cards[optionOneId].setAttribute('src', "images/blank.png")
+        cards[optionTwoId].setAttribute('src', 'images/blank.png')
+   }
+   cardsChosen = [];
+   cardsChosenIds = [];
 }
 
 function flipCard() {
@@ -93,8 +98,8 @@ function flipCard() {
     let cardID = this.getAttribute('data-id')
    cardsChosen.push(cardArray[cardID].name)
    cardsChosenIds.push(cardID);
-   console.log(cardsChosen)
-   console.log(cardsChosenIds)
+   //console.log(cardsChosen)
+   //console.log(cardsChosenIds)
    this.setAttribute('src', cardArray[cardID].img)
    if(cardsChosen.length === 2) {
     setTimeout(checkMatch, 500)
