@@ -103,8 +103,7 @@ function checkMatch() {
 }
 
 function flipCard() {
-   
-    let cardID = this.getAttribute('data-id')
+   let cardID = this.getAttribute('data-id')
    cardsChosen.push(cardArray[cardID].name)
    cardsChosenIds.push(cardID);
    //console.log(cardsChosen)
